@@ -21,6 +21,11 @@ App.use(cors());
 App.use(express.json());
 
 // App Configuration
+// check for server running on localhost
+App.get('/', (req: Request, res: Response) => {
+	res.send('Server is running');
+});
+
 App.use((req: Request, res: Response, next: NextFunction) => {
 	next(createHttpError(404,'Endpoint not found'));
 });
