@@ -1,47 +1,50 @@
-import createHttpError, { isHttpError } from 'http-errors';
-import express, { NextFunction, Request, Response } from 'express';
+import cors from "cors";
+import dotenv from "dotenv";
+import express, { NextFunction, Request, Response } from "express";
+import helmet from "helmet";
+import createHttpError, { isHttpError } from "http-errors";
+import morgan from "morgan";
 
-import cors from 'cors';
-import dotenv from 'dotenv';
-import helmet from 'helmet';
-import morgan from 'morgan';
-import { validateEnv } from './utils';
+import { InsightModel } from "./db";
+import { validateEnv } from "./utils";
 
 // App Variables
 dotenv.config();
 validateEnv();
 
 // Initialize the Express app
-const App = express();
+const app = express();
 
 // Use the dependencies
-App.use(morgan('dev'))
-App.use(helmet());
-App.use(cors());
-App.use(express.json());
+app.use(morgan("dev"));
+app.use(helmet());
+app.use(cors());
+app.use(express.json());
 
 // App Configuration
 // check for server running on localhost
-App.get('/', (req: Request, res: Response) => {
-	res.send('Server is running');
+app.get("/", async (req, res) => {
+  try {
+    const data = await InsightModel.find({});
+    res.json(data);
+  } catch (error) {
+    res.status(500).send(error);
+  }
 });
 
-App.use((req: Request, res: Response, next: NextFunction) => {
-	next(createHttpError(404,'Endpoint not found'));
+app.use((req: Request, res: Response, next: NextFunction) => {
+  next(createHttpError(404, "Endpoint not found"));
 });
 
-App.use((error: Error, req: Request, res: Response, next: NextFunction) => {
-	console.error('Error fetching notes:', error);
-	let errorMessage = 'An unknown Error occurred';
-	let statusCode = 500;
-	if(isHttpError(error)){
-		errorMessage = error.message;
-		statusCode = error.status;
-	}
-	res.status(statusCode).json(errorMessage);
-        
+app.use((error: Error, req: Request, res: Response, next: NextFunction) => {
+  console.error("Error fetching notes:", error);
+  let errorMessage = "An unknown Error occurred";
+  let statusCode = 500;
+  if (isHttpError(error)) {
+    errorMessage = error.message;
+    statusCode = error.status;
+  }
+  res.status(statusCode).json(errorMessage);
 });
 
-export default App;
-
-
+export default app;

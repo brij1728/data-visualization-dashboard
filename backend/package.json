@@ -6,7 +6,8 @@
   "scripts": {
     "dev": "nodemon",
     "start": "npm run build && node dist/server.js",
-    "build": "tsc && tsc-alias"
+    "build": "tsc && tsc-alias",
+    "import-data": "npm run build && node dist/initializeDatabase.js"
   },
   "keywords": [],
   "author": "",
