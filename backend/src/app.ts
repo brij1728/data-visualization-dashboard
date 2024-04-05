@@ -1,11 +1,12 @@
-import cors from "cors";
-import dotenv from "dotenv";
-import express, { NextFunction, Request, Response } from "express";
-import helmet from "helmet";
 import createHttpError, { isHttpError } from "http-errors";
-import morgan from "morgan";
+import express, { NextFunction, Request, Response } from "express";
 
 import { InsightModel } from "./db";
+import cors from "cors";
+import dotenv from "dotenv";
+import helmet from "helmet";
+import insightsRouter from './routes/insightsRoutes';
+import morgan from "morgan";
 import { validateEnv } from "./utils";
 
 // App Variables
@@ -23,14 +24,17 @@ app.use(express.json());
 
 // App Configuration
 // check for server running on localhost
-app.get("/", async (req, res) => {
-  try {
-    const data = await InsightModel.find({});
-    res.json(data);
-  } catch (error) {
-    res.status(500).send(error);
-  }
-});
+// app.get("/", async (req, res) => {
+//   try {
+//     const data = await InsightModel.find({});
+//     res.json(data);
+//   } catch (error) {
+//     res.status(500).send(error);
+//   }
+// });
+
+// Routes
+app.use('/api/insights', insightsRouter);
 
 app.use((req: Request, res: Response, next: NextFunction) => {
   next(createHttpError(404, "Endpoint not found"));
