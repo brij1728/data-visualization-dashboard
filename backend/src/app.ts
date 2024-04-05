@@ -23,18 +23,10 @@ app.use(cors());
 app.use(express.json());
 
 // App Configuration
-// check for server running on localhost
-// app.get("/", async (req, res) => {
-//   try {
-//     const data = await InsightModel.find({});
-//     res.json(data);
-//   } catch (error) {
-//     res.status(500).send(error);
-//   }
-// });
 
 // Routes
-app.use('/api/insights', insightsRouter);
+// app.use('/api/insights', insightsRouter);
+app.use('/', insightsRouter);
 
 app.use((req: Request, res: Response, next: NextFunction) => {
   next(createHttpError(404, "Endpoint not found"));
