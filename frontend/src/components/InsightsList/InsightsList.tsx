@@ -1,3 +1,4 @@
+import { DonutChart } from '../Chart';
 import { InsightItem } from '../InsightItem';
 import { useFetchInsights } from '../../api';
 
@@ -7,6 +8,7 @@ export const InsightsList = () => {
   const { insights, isLoading, error } = useFetchInsights(apiUrl);
   return (
     <div>
+		<DonutChart insights={insights} />
       {isLoading && <p>Loading insights...</p>}
       {error && <p>Error fetching insights: {error}</p>}
       {insights.length > 0 ? (
