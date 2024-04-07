@@ -97,5 +97,9 @@ export const DonutChart: React.FC<DonutChartProps> = ({ insights }) => {
 
   }, [insights]);
 
-  return <svg ref={ref} />;
+  return (
+  <>
+    <h2>Insights by Sector</h2>
+    <svg ref={ref} />
+  </>);
 };
