@@ -1,4 +1,4 @@
-import { DonutChart, EnergyTrendChart, TemporalTrendLineChart } from '../Chart';
+import { DonutChart, EnergyTrendChart, TrendLineChart } from '../Chart';
 
 import { useFetchInsights } from '../../api';
 
@@ -14,7 +14,7 @@ export const InsightsList = () => {
 
       {!isLoading && !error && insights && <DonutChart insights={insights} />}
       {!isLoading && !error && insights && <EnergyTrendChart data={insights} />}
-      {!isLoading && !error && insights && <TemporalTrendLineChart data={insights} />}
+      {!isLoading && !error && insights && <TrendLineChart data={insights} />}
       
     </div>
   );
