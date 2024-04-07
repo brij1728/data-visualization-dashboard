@@ -1,6 +1,5 @@
-import { DonutChart, EnergyTrendChart } from '../Chart';
+import { DonutChart, EnergyTrendChart, TemporalTrendLineChart } from '../Chart';
 
-import { InsightItem } from '../InsightItem';
 import { useFetchInsights } from '../../api';
 
 export const InsightsList = () => {
@@ -9,16 +8,14 @@ export const InsightsList = () => {
   const { insights, isLoading, error } = useFetchInsights(apiUrl);
   
   return (
-    <div>
-		<DonutChart insights={insights} />
-    <EnergyTrendChart data={insights} />
+     <div>
       {isLoading && <p>Loading insights...</p>}
       {error && <p>Error fetching insights: {error}</p>}
-      {insights.length > 0 ? (
-        insights.map((insight) => <InsightItem key={insight._id} insight={insight} />)
-      ) : (
-        <p>No insights found.</p>
-      )}
+
+      {!isLoading && !error && insights && <DonutChart insights={insights} />}
+      {!isLoading && !error && insights && <EnergyTrendChart data={insights} />}
+      {!isLoading && !error && insights && <TemporalTrendLineChart data={insights} />}
+      
     </div>
   );
 };
