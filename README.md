@@ -106,7 +106,7 @@ Here are some of the visualizations you can expect from the dashboard:
 
 ## Authors
 
-- **Brijesh Kumar** - *Initial work* - [GitHub](https://github.com/YourGitHub)
+- **Brijesh Kumar** - *Initial work* - [GitHub](https://github.com/brij1728)
 
 
 ## License
