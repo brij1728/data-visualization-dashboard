@@ -12,7 +12,7 @@ export const InsightsList = () => {
       {isLoading && <p>Loading insights...</p>}
       {error && <p>Error fetching insights: {error}</p>}
 
-      {!isLoading && !error && insights && <DonutChart insights={insights} />}
+      {!isLoading && !error && insights && <DonutChart data={insights} />}
       {!isLoading && !error && insights && <EnergyTrendChart data={insights} />}
       {!isLoading && !error && insights && <TrendLineChart data={insights} />}
       

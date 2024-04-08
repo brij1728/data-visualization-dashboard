@@ -1,23 +1,21 @@
 import * as d3 from 'd3';
 
 import React, { useEffect, useRef } from 'react';
+import { SectorDistribution, transformDataForDonutChart } from './transformDataForDonutChart';
 
 import { Insight } from '../../types';
 
 interface DonutChartProps {
-  insights: Insight[];
-}
-interface SectorDistribution {
-  sector: string;
-  count: number;
+  data: Insight[];
 }
 
-export const DonutChart: React.FC<DonutChartProps> = ({ insights }) => {
+export const DonutChart: React.FC<DonutChartProps> = ({ data }) => {
   const ref = useRef<SVGSVGElement>(null);
 
   useEffect(() => {
-    if (!ref.current || insights.length === 0) return;
+    if (!ref.current || data.length === 0) return;
 
+    const transformedData = transformDataForDonutChart(data);
     const width = 1200; 
     const height = 500;
     const margin = 40;
@@ -33,15 +31,10 @@ export const DonutChart: React.FC<DonutChartProps> = ({ insights }) => {
 
     const color = d3.scaleOrdinal(d3.schemeCategory10);
 
-    const sectorCounts: SectorDistribution[] = d3.rollups(
-      insights,
-      vs => vs.length,
-      d => d.sector
-    ).map(([sector, count]) => ({ sector, count }));
 
     const pie = d3.pie<SectorDistribution>()
       .sort(null) 
-      .value(d => d.count)(sectorCounts);
+      .value(d => d.count)(transformedData);
 
     const arc = d3.arc<d3.PieArcDatum<SectorDistribution>>()
       .innerRadius(radius * 0.5)
@@ -76,11 +69,11 @@ export const DonutChart: React.FC<DonutChartProps> = ({ insights }) => {
       });
 
     const legend = svg.selectAll('.legend')
-      .data(sectorCounts)
+      .data(transformedData)
       .enter()
       .append('g')
       .attr('class', 'legend')
-      .attr('transform', (d, i) => `translate(${radius * 1.5}, ${i * 20 - sectorCounts.length * 10})`);
+      .attr('transform', (d, i) => `translate(${radius * 1.5}, ${i * 20 - transformedData.length * 10})`);
 
     legend.append('rect')
       .attr('width', 18)
@@ -95,7 +88,7 @@ export const DonutChart: React.FC<DonutChartProps> = ({ insights }) => {
       .style('text-anchor', 'start')
       .style('alignment-baseline', 'middle');
 
-  }, [insights]);
+  }, [data]);
 
   return (
   <>
