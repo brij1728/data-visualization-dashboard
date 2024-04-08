@@ -59,11 +59,11 @@ export const DonutChart: React.FC<DonutChartProps> = ({ data }) => {
       .style('opacity', 0);
 
     slices
-      .on('mouseover', function (event, d) {
+      .on('mouseover', function (_, d) {
         d3.select(this).transition().duration(200).style('opacity', 0.85);
         labels.filter(dd => dd.data === d.data).style('opacity', 1).style('fill', 'black');
       })
-      .on('mouseout', function (event, d) {
+      .on('mouseout', function (_, d) {
         d3.select(this).transition().duration(200).style('opacity', 0.7);
         labels.filter(dd => dd.data === d.data).style('opacity', 0).style('fill', 'white');
       });
@@ -73,7 +73,7 @@ export const DonutChart: React.FC<DonutChartProps> = ({ data }) => {
       .enter()
       .append('g')
       .attr('class', 'legend')
-      .attr('transform', (d, i) => `translate(${radius * 1.5}, ${i * 20 - transformedData.length * 10})`);
+      .attr('transform', (_, i) => `translate(${radius * 1.5}, ${i * 20 - transformedData.length * 10})`);
 
     legend.append('rect')
       .attr('width', 18)
