@@ -92,7 +92,7 @@ export const DonutChart: React.FC<DonutChartProps> = ({ data }) => {
   }, [data]);
 
   return (
-  <Box sx={{ my: 4 }}> 
+  <Box > 
       <Typography variant="h4" component="h2" gutterBottom>
         Insights by Sector
       </Typography>

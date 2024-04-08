@@ -59,7 +59,7 @@ export const EnergyTrendChart: React.FC<EnergyChartProps> = ({ data }) => {
   }, [data]);
 
   return (
-   <Box sx={{ my: 4 }}> 
+   <Box > 
       <Typography variant="h4" component="h2" gutterBottom>
         Energy Intensity by Region
       </Typography>

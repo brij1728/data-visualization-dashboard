@@ -97,7 +97,7 @@ export const TrendLineChart: React.FC<{ data: Insight[] }> = ({ data }) => {
   }, [data]);
 
   return (
-  <Box sx={{ my: 4 }}> 
+  <Box> 
       <Typography variant="h4" component="h2" gutterBottom>
         Annual Trends: Intensity, Impact, and Likelihood
       </Typography>

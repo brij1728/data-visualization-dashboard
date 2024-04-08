@@ -1,4 +1,3 @@
-Here's a `README.md` file structured for a full-stack MERN project with Vite, React, TypeScript, MUI, and MongoDB, including instructions for setting up and running both backend and frontend parts, as well as how to use the application:
 
 ```markdown
 # Data Visualization Dashboard
@@ -100,31 +99,17 @@ After starting the backend and frontend servers, navigate to `http://localhost:3
 
 Here are some of the visualizations you can expect from the dashboard:
 
-![Trend Line Chart](./path/to/trend_line_chart.png)
-![Energy Trend Chart](./path/to/energy_trend_chart.png)
-![Insights by Sector](./path/to/pieChart.png)
+![Trend Line Chart](./assets/pieChart.png)
+![Energy Trend Chart](./assets/energy_trend_chart.png)
+![Insights by Sector](./assets/trend_line_chart.png)
 
-_Note: Replace `./path/to/...` with the actual paths to your screenshot images._
-
-## Contributing
-
-Please read [CONTRIBUTING.md](CONTRIBUTING.md) for details on our code of conduct, and the process for submitting pull requests to us.
 
 ## Authors
 
-- **Your Name** - *Initial work* - [YourGitHub](https://github.com/YourGitHub)
+- **Brijesh Kumar** - *Initial work* - [GitHub](https://github.com/YourGitHub)
 
-See also the list of [contributors](https://github.com/your_project/contributors) who participated in this project.
 
 ## License
 
 This project is licensed under the MIT License - see the [LICENSE.md](LICENSE.md) file for details.
 
-## Acknowledgments
-
-- Hat tip to anyone whose code was used
-- Inspiration
-- etc
-```
-
-In this `README.md`, there's a clear introduction, instructions on getting started, including installation steps, usage guide, built with section listing the technologies used, and a placeholder for screenshots. Ensure to replace placeholder texts (like `your_mongodb_uri`, paths to screenshots, `Your Name`, `YourGitHub`, and so on) with actual relevant information before finalizing the README.
