@@ -1,5 +1,6 @@
 import * as d3 from 'd3';
 
+import { Box, Typography } from '@mui/material';
 import { GroupedData, transformData } from './transformTrendLineChartData';
 import React, { useEffect, useRef } from 'react';
 
@@ -19,6 +20,7 @@ export const TrendLineChart: React.FC<{ data: Insight[] }> = ({ data }) => {
 
   useEffect(() => {
     const transformedData = transformData(data);
+    console.log(transformedData);
     if (transformedData.length === 0) return;
 
     const width = 900;
@@ -94,6 +96,17 @@ export const TrendLineChart: React.FC<{ data: Insight[] }> = ({ data }) => {
       .text('Value');
   }, [data]);
 
-  return <svg ref={svgRef}></svg>;
+  return (
+  <Box sx={{ my: 4 }}> 
+      <Typography variant="h4" component="h2" gutterBottom>
+        Annual Trends: Intensity, Impact, and Likelihood
+      </Typography>
+      <Box
+        ref={svgRef}
+        component="svg"
+      />
+    
+    </Box>
+  );
 };
 

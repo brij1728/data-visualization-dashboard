@@ -1,5 +1,6 @@
 import * as d3 from 'd3';
 
+import { Box, Typography } from '@mui/material';
 import React, { useEffect, useRef } from 'react';
 import { SectorDistribution, transformDataForDonutChart } from './transformDataForDonutChart';
 
@@ -16,7 +17,7 @@ export const DonutChart: React.FC<DonutChartProps> = ({ data }) => {
     if (!ref.current || data.length === 0) return;
 
     const transformedData = transformDataForDonutChart(data);
-    const width = 1200; 
+    const width = 800; 
     const height = 500;
     const margin = 40;
     const radius = Math.min(width, height) / 2 - margin;
@@ -91,8 +92,15 @@ export const DonutChart: React.FC<DonutChartProps> = ({ data }) => {
   }, [data]);
 
   return (
-  <>
-    <h2>Insights by Sector</h2>
-    <svg ref={ref} />
-  </>);
+  <Box sx={{ my: 4 }}> 
+      <Typography variant="h4" component="h2" gutterBottom>
+        Insights by Sector
+      </Typography>
+      <Box
+        ref={ref}
+        component="svg"
+      />
+    
+    </Box>
+  );
 };

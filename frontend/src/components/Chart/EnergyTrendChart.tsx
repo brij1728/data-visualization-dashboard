@@ -1,5 +1,6 @@
 import * as d3 from 'd3';
 
+import { Box, Typography } from '@mui/material';
 import React, { useEffect, useRef } from 'react';
 
 import { Insight } from '../../types';
@@ -58,10 +59,16 @@ export const EnergyTrendChart: React.FC<EnergyChartProps> = ({ data }) => {
   }, [data]);
 
   return (
-    <>
-      <h2>Energy Intensity by Region</h2>
-      <svg ref={svgRef} />
-    </>
+   <Box sx={{ my: 4 }}> 
+      <Typography variant="h4" component="h2" gutterBottom>
+        Energy Intensity by Region
+      </Typography>
+      <Box
+        ref={svgRef}
+        component="svg"
+      />
+    
+    </Box>
   );
 };
 
